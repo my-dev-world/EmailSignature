@@ -16,4 +16,5 @@
 //= require angular-touch
 //= require angular-rails-templates
 //= require angular-bootstrap/ui-bootstrap-tpls
+//= require angular-drag-and-drop-lists
 //= require_tree .
