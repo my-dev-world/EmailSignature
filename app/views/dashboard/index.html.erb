@@ -1,10 +1,19 @@
-<div class="container">
+<div class="container" ng-app="Signature">
   <div class="jumbotron">
-    <h1>AngularJS Tutorial</h1>
-    <p>by Piotr Jaworski</p>
+    <h1>Email Signature Test</h1>
+    <a ui-sref="dashboard" ui-sref-active="active">Dashboard</a>
+    <a ui-sref="signature" ui-sref-active="active">Email Signature</a>
   </div>
-  <div class="row" ng-controller="EventsCtrl">
+
+  <div class="row">
     <div class="col-md-12">
+      <ui-view></ui-view>
     </div>
   </div>
+
+  <footer>
+    <div class="text-right">
+      <a ui-sref="dashboard" ui-sref-active="active">Skip This Step</a>
+    </div>
+  </footer>
 </div>
