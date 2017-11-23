@@ -15,10 +15,6 @@ module EmailSignature
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Precompile AngularJS apps into their own app bundles.  Provides for selective download of JS as not all users need all apps.
-    # This fine grained control is essential since many users will use a limited amount of functions on their mobile device.
-    config.assets.precompile += %W(angular/*.js)
-
     # This allows us to keep the AngularJS templates in /app/assets/javascripts/angular/templates vs. a higher level.
     config.angular_templates.ignore_prefix  = 'angular/templates/'
   end

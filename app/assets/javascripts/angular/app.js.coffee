@@ -1,6 +1,7 @@
 
 angular.module 'Signature', [
   'ui.router'
+  'ui.bootstrap'
   'templates'
 ]
 

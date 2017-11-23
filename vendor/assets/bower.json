@@ -4,6 +4,9 @@
     "angular": "latest",
     "bootstrap": "latest",
     "restangular": "latest",
-    "angular-ui-router": "latest"
+    "angular-ui-router": "latest",
+    "angular-animate": "latest",
+    "angular-touch": "latest",
+    "angular-bootstrap": "2.4.0"
   }
 }

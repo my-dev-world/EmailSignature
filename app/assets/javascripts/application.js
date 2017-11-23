@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require angular
-//= require angular-rails-templates
 //= require angular-ui-router
-//= require restangular
+//= require angular-animate
+//= require angular-touch
+//= require angular-rails-templates
+//= require angular-bootstrap/ui-bootstrap-tpls
 //= require_tree .
