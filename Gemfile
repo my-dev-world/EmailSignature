@@ -33,6 +33,7 @@ gem 'angular_rails_csrf'
 
 gem 'font-awesome-rails'
 gem 'responders'
+gem 'dotenv-rails'
 
 group :development, :test do
 # Use sqlite3 as the database for Active Record
