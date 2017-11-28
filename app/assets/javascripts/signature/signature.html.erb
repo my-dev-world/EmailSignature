@@ -26,15 +26,14 @@
   </div>
 
   <!-- Font style zone -->
-  <div class="col-md-4">
+  <div class="col-md-4" ng-if="selected.value">
     <h4>Title Field</h4>
     <div class="container-element">
       <div class="form-group">
         <label for="font">Font</label>
         <select
-          ng-model="selectedFont"
+          ng-model="selected.fontFamily"
           ng-options="font for font in fonts"
-          ng-change="selectFont()"
           class="form-control"
           id="font">
         </select>
@@ -42,9 +41,8 @@
       <div class="form-group">
         <label for="size">Size</label>
         <select
-          ng-model="selectedSize"
+          ng-model="selected.fontSize"
           ng-options="size for size in sizes"
-          ng-change="selectSize()"
           class="form-control"
           id="size">
         </select>
@@ -56,8 +54,41 @@
           id="color"
           class="form-control"
           type="text"
-          ng-model="selectedColor">
+          ng-model="selected.color">
+        </input>
       </div>
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label style="font-weight: bold">
+              <input type="checkbox" ng-model="selected.bold" ng-click="selectBold()"> B
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label style="text-decoration: underline;">
+              <input type="checkbox" ng-model="selected.underline" ng-click="selectUnderline()"> U
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label style="font-style: italic;">
+              <input type="checkbox" ng-model="selected.italic" ng-click="selectItalic()"> I
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Preview</h4>
+    <div class="container-element">
+      <div ng-bind-html="html"></div>
     </div>
   </div>
 </div>

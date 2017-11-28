@@ -3,63 +3,71 @@ angular
     .module('Signature')
     .controller('SignatureCtrl', SignatureCtrl);
 
-SignatureCtrl.$inject = ['$scope'];
+SignatureCtrl.$inject = ['$scope', '$sce'];
 
-function SignatureCtrl($scope) {
+function SignatureCtrl($scope, $sce) {
 
     // Initialize components
     $scope.model = [
         {
             label: 'Surname',
             value: 'surname',
-            color: '#fff',
+            field: 'Bob',
+            color: '#000',
             fontSize: 14,
             fontFamily: 'Arial'
         },
         {
             label: 'Lastname',
             value: 'lastname',
-            color: '#fff',
+            field: 'Smith',
+            color: '#000',
             fontSize: 16,
             fontFamily: 'Tahoma'
         },
         {
             label: 'Title',
             value: 'title',
-            color: '#fff',
+            field: 'Senior Developer',
+            color: '#000',
             fontSize: 18,
             fontFamily: 'Arial'
         },
         {
             label: 'Zk Phone Number',
             value: 'zk',
-            color: '#fff',
+            field: '(480) 662 3333',
+            color: '#000',
             fontSize: 20,
             fontFamily: 'Arial'
         },
         {
             label: 'Company Name',
             value: 'company',
-            color: '#fff',
+            field: 'ABC Company',
+            color: '#000',
             fontSize: 14,
             fontFamily: 'Arial'
         },
         {
             label: 'Address',
             value: 'address',
-            color: '#fff',
+            field: '66345 West Street, New York',
+            color: '#000',
             fontSize: 14,
             fontFamily: 'Arial'
         },
         {
             label: 'City, ZIP Code',
             value: 'zip',
-            color: '#fff',
+            field: '10010',
+            color: '#000',
             fontSize: 14,
             fontFamily: 'Arial'
         }
     ];
-    $scope.selected = null;
+    $scope.selected = {};
+    $scope.html = '';
 
     // Initialize fonts
     $scope.fonts = ['Arial', 'Tahoma'];
@@ -79,14 +87,6 @@ function SignatureCtrl($scope) {
     function initialize() {
     }
 
-    $scope.selectFont = function () {
-       $scope.selected.fontFamily = $scope.selectedFont;
-    }
-
-    $scope.selectSize = function () {
-       $scope.selected.fontSize = $scope.selectedSize;
-    }
-
     $scope.selectCallback = function(index, item, external, type) {
         $scope.selected = item;
         $scope.selectedFont = item.fontFamily;
@@ -94,32 +94,22 @@ function SignatureCtrl($scope) {
         $scope.selectedColor = item.color;
     }
 
-    $scope.dragoverCallback = function(index, external, type, callback) {
-        $scope.logListEvent('dragged over', index, external, type);
-        // Invoke callback to origin for container types.
-        if (type == 'container' && !external) {
-            console.log('Container being dragged contains ' + callback() + ' items');
-        }
-        return index < 10; // Disallow dropping in the third row.
-    };
-
-    $scope.dropCallback = function(index, item, external, type) {
-        $scope.logListEvent('dropped at', index, external, type);
-        // Return false here to cancel drop. Return true if you insert the item yourself.
-        return item;
-    };
-
-    $scope.logEvent = function(message) {
-        console.log(message);
-    };
-
-    $scope.logListEvent = function(action, index, external, type) {
-        var message = external ? 'External ' : '';
-        message += type + ' element was ' + action + ' position ' + index;
-        console.log(message);
-    };
-
     $scope.$watch('model', function(model) {
         $scope.modelAsJson = angular.toJson(model, true);
+
+        //Generate preview HTML
+        var html = '';
+        angular.forEach(model, function(item, index) {
+            html += '<div style="font-family:' + item.fontFamily 
+                + ';font-size:' + item.fontSize + 'px'
+                + '; color:' + item.color
+                + '; font-weight:' + (item.bold ? 'bold' : 'normal')
+                + '; text-decoration:' + (item.underline ? 'underline' : 'none')
+                + '; font-style:' + (item.italic ? 'italic' : 'normal')
+                + ';">'
+                + item.field + '</div>';
+        });
+
+        $scope.html = $sce.trustAsHtml(html);
     }, true);
 };
