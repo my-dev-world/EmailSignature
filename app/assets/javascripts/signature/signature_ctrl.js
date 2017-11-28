@@ -3,9 +3,9 @@ angular
     .module('Signature')
     .controller('SignatureCtrl', SignatureCtrl);
 
-SignatureCtrl.$inject = ['$scope', '$sce'];
+SignatureCtrl.$inject = ['$scope', '$sce', 'signatureService'];
 
-function SignatureCtrl($scope, $sce) {
+function SignatureCtrl($scope, $sce, signatureService) {
 
     // Initialize components
     $scope.model = [
@@ -70,7 +70,7 @@ function SignatureCtrl($scope, $sce) {
     $scope.html = '';
 
     // Initialize fonts
-    $scope.fonts = ['Arial', 'Tahoma'];
+    $scope.fonts = ['Arial', 'Arial Black', 'Tahoma', 'Trebuchet MS', 'Verdana', 'Courier', 'Courier New', 'Georgia', 'Times', 'Times New Roman'];
     $scope.selectedFont = '';
 
     // Initialize sizes
@@ -80,7 +80,8 @@ function SignatureCtrl($scope, $sce) {
     // Initialize color settings
     $scope.selectedColor = '#000';
 
-    var id = 10;
+    $scope.html = '';
+
     // Change status
     $scope.changed = false;
 
@@ -119,13 +120,20 @@ function SignatureCtrl($scope, $sce) {
         $scope.$apply();
     }
 
+    $scope.saveSignature = function() {
+        signatureService.postSignature({data: JSON.stringify($scope.modelClone), template: $scope.html.toString()})
+            .then(function(response) {
+                $scope.changed = false;
+            });
+    }
+
     $scope.$watch('modelClone', function(modelClone) {
         $scope.modelAsJson = angular.toJson(modelClone, true);
 
         //Generate preview HTML
-        var html = '';
+        $scope.html = '';
         angular.forEach(modelClone, function(item, index) {
-            html += '<div style="font-family:' + item.fontFamily 
+            $scope.html += '<div style="font-family:' + item.fontFamily 
                 + ';font-size:' + item.fontSize + 'px'
                 + '; color:' + item.color
                 + '; font-weight:' + (item.bold ? 'bold' : 'normal')
@@ -135,8 +143,8 @@ function SignatureCtrl($scope, $sce) {
                 + item.field + '</div>';
         });
 
-        html += '<p>This message is solicitation. Feel tree to manage your subscriptions to opt out of further emails</p>';
+        $scope.html += '<p>This message is solicitation. Feel tree to manage your subscriptions to opt out of further emails</p>';
 
-        $scope.html = $sce.trustAsHtml(html);
+        $scope.html = $sce.trustAsHtml($scope.html);
     }, true);
 };

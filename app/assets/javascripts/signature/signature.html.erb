@@ -98,13 +98,15 @@
 
 <div class="action-section" ng-if="changed === true">
   <div class="pull-right">
-    <a class="btn btn-success">Next</a>
+    <button class="btn btn-success" ng-click="saveSignature()">Next</button>
   </div>
 
   <div class="pull-right mr20">
-    <a
+    <button
       class="btn btn-default"
       confirm-click="Are you sure you want to cancel changes?"
-      confirmed-click="cancelChanges()">Cancel Changes</a>
+      confirmed-click="cancelChanges()">
+      Cancel Changes
+    </button>
   </div>
 </footer>
