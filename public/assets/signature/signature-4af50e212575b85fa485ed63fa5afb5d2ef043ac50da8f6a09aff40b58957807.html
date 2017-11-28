@@ -1,0 +1,112 @@
+<div class="row">
+  <!-- Drag and Drop zone -->
+  <div class="col-md-8 advancedDemo">
+    <div class="dropzone box box-yellow">
+      <h4>
+        Company Email Signature Format
+        <i class="fa fa-question-circle"
+           uib-tooltip="Click on the component to change its formatting"
+        ></i>
+      </h4>
+      <div class="container-element box box-blue">
+        <ul dnd-list="modelClone"
+            dnd-horizontal-list="true"
+            class="itemlist">
+          <li ng-repeat="item in modelClone"
+              dnd-draggable="item"
+              dnd-effect-allowed="move"
+              dnd-moved="moveCallback($index, item, external, type)"
+              dnd-selected="selectCallback($index, item, external, type)"
+              ng-class="{'selected': selected === item}">
+            {{item.label}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font style zone -->
+  <div class="col-md-4" ng-if="selected.value">
+    <h4>Title Field</h4>
+    <div class="container-element">
+      <div class="form-group">
+        <label for="font">Font</label>
+        <select
+          ng-model="selected.fontFamily"
+          ng-options="font for font in fonts"
+          ng-change="changeCallback()"
+          class="form-control"
+          id="font">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="size">Size</label>
+        <select
+          ng-model="selected.fontSize"
+          ng-options="size for size in sizes"
+          ng-change="changeCallback()"
+          class="form-control"
+          id="size">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="color">Color: {{ selectedColor }}</label>
+        <input
+          minicolors
+          id="color"
+          class="form-control"
+          type="text"
+          ng-model="selected.color"
+          ng-change="changeCallback()">
+        </input>
+      </div>
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label style="font-weight: bold">
+              <input type="checkbox" ng-model="selected.bold" ng-click="selectBold()"> B
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label style="text-decoration: underline;">
+              <input type="checkbox" ng-model="selected.underline" ng-click="selectUnderline()"> U
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label style="font-style: italic;">
+              <input type="checkbox" ng-model="selected.italic" ng-click="selectItalic()"> I
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Preview</h4>
+    <div class="container-element">
+      <div class="preview-section" ng-bind-html="html"></div>
+    </div>
+  </div>
+</div>
+
+<div class="action-section" ng-if="changed === true">
+  <div class="pull-right">
+    <button class="btn btn-success" ng-click="saveSignature()">Next</button>
+  </div>
+
+  <div class="pull-right mr20">
+    <button
+      class="btn btn-default"
+      confirm-click="Are you sure you want to cancel changes?"
+      confirmed-click="cancelChanges()">
+      Cancel Changes
+    </button>
+  </div>
+</footer>
