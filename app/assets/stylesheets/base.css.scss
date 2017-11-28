@@ -7,9 +7,14 @@ html{
   height: 100%;
   width: 100%;
 }
+
 body{
   position: relative;
   background-color: $background-color;
   height: 100%;
   width: 100%;
+}
+
+.mr20 {
+	margin-right: 20px;
 }

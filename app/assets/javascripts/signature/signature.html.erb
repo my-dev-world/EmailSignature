@@ -9,14 +9,14 @@
         ></i>
       </h4>
       <div class="container-element box box-blue">
-        <ul dnd-list="model"
+        <ul dnd-list="modelClone"
             dnd-horizontal-list="true"
             class="itemlist">
-          <li ng-repeat="item in model"
+          <li ng-repeat="item in modelClone"
               dnd-draggable="item"
               dnd-effect-allowed="move"
-              dnd-moved="model.splice($index, 1)"
-              dnd-selected="selectCallback(index, item, external, type)"
+              dnd-moved="moveCallback($index, item, external, type)"
+              dnd-selected="selectCallback($index, item, external, type)"
               ng-class="{'selected': selected === item}">
             {{item.label}}
           </li>
@@ -34,6 +34,7 @@
         <select
           ng-model="selected.fontFamily"
           ng-options="font for font in fonts"
+          ng-change="changeCallback()"
           class="form-control"
           id="font">
         </select>
@@ -43,6 +44,7 @@
         <select
           ng-model="selected.fontSize"
           ng-options="size for size in sizes"
+          ng-change="changeCallback()"
           class="form-control"
           id="size">
         </select>
@@ -54,7 +56,8 @@
           id="color"
           class="form-control"
           type="text"
-          ng-model="selected.color">
+          ng-model="selected.color"
+          ng-change="changeCallback()">
         </input>
       </div>
       <div class="row">
@@ -88,7 +91,20 @@
   <div class="col-md-6">
     <h4>Preview</h4>
     <div class="container-element">
-      <div ng-bind-html="html"></div>
+      <div class="preview-section" ng-bind-html="html"></div>
     </div>
   </div>
 </div>
+
+<div class="action-section" ng-if="changed === true">
+  <div class="pull-right">
+    <a class="btn btn-success">Next</a>
+  </div>
+
+  <div class="pull-right mr20">
+    <a
+      class="btn btn-default"
+      confirm-click="Are you sure you want to cancel changes?"
+      confirmed-click="cancelChanges()">Cancel Changes</a>
+  </div>
+</footer>

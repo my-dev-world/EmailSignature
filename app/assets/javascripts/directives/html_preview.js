@@ -1,20 +1,22 @@
 
 angular
 	.module('Signature')
-	.directive('htmlPreview', htmlPreview);
+	.directive('confirmClick', confirmClick);
 
-function htmlPreview() {
+function confirmClick() {
 	var directive = {
-		restrict: 'EA',
-		scope: {
-			data: '@'
-		},
 		link: link
 	};
 
 	return directive;
 
 	function link(scope, element, attrs) {
-		debugger;
+		var msg = attrs.confirmClick || "Are you sure?";
+        var clickAction = attrs.confirmedClick;
+        element.bind('click',function (event) {
+            if (window.confirm(msg)) {
+                scope.$eval(clickAction)
+            }
+        });
 	}
 }

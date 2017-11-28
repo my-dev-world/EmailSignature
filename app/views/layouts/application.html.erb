@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <%= javascript_include_tag 'application' %>
   </head>
@@ -18,12 +18,8 @@
         <a ui-sref="signature" ui-sref-active="active">Email Signature</a>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <ui-view></ui-view>
-        </div>
-      </div>
-
+      <ui-view></ui-view>
+      
       <footer>
         <div class="text-right">
           <a ui-sref="dashboard" ui-sref-active="active">Skip This Step</a>

@@ -83,3 +83,20 @@ footer {
   background-color: #fff;
   padding: 10px;
 }
+
+.preview-section {
+  p {
+    margin-top: 20px;
+  }
+}
+
+.action-section {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 10px;
+}
