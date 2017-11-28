@@ -17,4 +17,6 @@
 //= require angular-rails-templates
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require angular-drag-and-drop-lists
+//= require jquery-minicolors/jquery.minicolors
+//= require angular-minicolors
 //= require_tree .

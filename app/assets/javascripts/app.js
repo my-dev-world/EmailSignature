@@ -3,7 +3,8 @@ angular
         'ui.router',
         'ui.bootstrap',
         'templates',
-        'dndLists'
+        'dndLists',
+        'minicolors'
     ]);
 
 angular

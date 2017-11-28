@@ -7,6 +7,8 @@
     "angular-ui-router": "latest",
     "angular-animate": "latest",
     "angular-touch": "latest",
-    "angular-bootstrap": "2.4.0"
+    "angular-bootstrap": "2.4.0",
+    "angular-drag-and-drop-lists": "latest",
+    "angular-minicolors": "latest"
   }
 }

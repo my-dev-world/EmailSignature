@@ -7,20 +7,91 @@ SignatureCtrl.$inject = ['$scope'];
 
 function SignatureCtrl($scope) {
 
-    // Initialize model
-    $scope.model = [[], []];
+    // Initialize components
+    $scope.model = [
+        {
+            label: 'Surname',
+            value: 'surname',
+            color: '#fff',
+            fontSize: 14,
+            fontFamily: 'Arial'
+        },
+        {
+            label: 'Lastname',
+            value: 'lastname',
+            color: '#fff',
+            fontSize: 16,
+            fontFamily: 'Tahoma'
+        },
+        {
+            label: 'Title',
+            value: 'title',
+            color: '#fff',
+            fontSize: 18,
+            fontFamily: 'Arial'
+        },
+        {
+            label: 'Zk Phone Number',
+            value: 'zk',
+            color: '#fff',
+            fontSize: 20,
+            fontFamily: 'Arial'
+        },
+        {
+            label: 'Company Name',
+            value: 'company',
+            color: '#fff',
+            fontSize: 14,
+            fontFamily: 'Arial'
+        },
+        {
+            label: 'Address',
+            value: 'address',
+            color: '#fff',
+            fontSize: 14,
+            fontFamily: 'Arial'
+        },
+        {
+            label: 'City, ZIP Code',
+            value: 'zip',
+            color: '#fff',
+            fontSize: 14,
+            fontFamily: 'Arial'
+        }
+    ];
+    $scope.selected = null;
+
+    // Initialize fonts
+    $scope.fonts = ['Arial', 'Tahoma'];
+    $scope.selectedFont = '';
+
+    // Initialize sizes
+    $scope.sizes = [12, 14, 16, 18, 20];
+    $scope.selectedSize = '';
+
+    // Initialize color settings
+    $scope.selectedColor = '#000';
+
     var id = 10;
 
     initialize();
 
     function initialize() {
-        angular.forEach(['all', 'move', 'copy', 'link', 'copyLink', 'copyMove'], function(effect, i) {
-            var container = {items: [], effectAllowed: effect};
-            for (var k = 0; k < 7; ++k) {
-                container.items.push({label: effect + ' ' + id++, effectAllowed: effect});
-            }
-            $scope.model[i % $scope.model.length].push(container);
-        });
+    }
+
+    $scope.selectFont = function () {
+       $scope.selected.fontFamily = $scope.selectedFont;
+    }
+
+    $scope.selectSize = function () {
+       $scope.selected.fontSize = $scope.selectedSize;
+    }
+
+    $scope.selectCallback = function(index, item, external, type) {
+        $scope.selected = item;
+        $scope.selectedFont = item.fontFamily;
+        $scope.selectedSize = item.fontSize;
+        $scope.selectedColor = item.color;
     }
 
     $scope.dragoverCallback = function(index, external, type, callback) {

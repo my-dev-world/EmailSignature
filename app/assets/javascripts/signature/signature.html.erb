@@ -1,48 +1,63 @@
-<h4>
-  Company Email Signature Format
-  <i class="fa fa-question-circle"
-     uib-tooltip="Click on the component to change its formatting"
-  ></i>
-</h4>
+<div class="row">
+  <!-- Drag and Drop zone -->
+  <div class="col-md-8 advancedDemo">
+    <div class="dropzone box box-yellow">
+      <h4>
+        Company Email Signature Format
+        <i class="fa fa-question-circle"
+           uib-tooltip="Click on the component to change its formatting"
+        ></i>
+      </h4>
+      <div class="container-element box box-blue">
+        <ul dnd-list="model"
+            dnd-horizontal-list="true"
+            class="itemlist">
+          <li ng-repeat="item in model"
+              dnd-draggable="item"
+              dnd-effect-allowed="move"
+              dnd-moved="model.splice($index, 1)"
+              dnd-selected="selectCallback(index, item, external, type)"
+              ng-class="{'selected': selected === item}">
+            {{item.label}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<div ng-repeat="containers in model" class="col-md-6 advancedDemo">
-  <div class="dropzone box box-yellow">
-    <h3>Dropzone {{$index + 1}}</h3>
-    <ul dnd-list="containers"
-        dnd-allowed-types="['container']"
-        dnd-external-sources="true"
-        dnd-dragover="dragoverCallback(index, external, type, callback)"
-        dnd-drop="dropCallback(index, item, external, type)">
-      <li ng-repeat="container in containers"
-          dnd-draggable="container"
-          dnd-type="'container'"
-          dnd-effect-allowed="copyMove"
-          dnd-moved="containers.splice($index, 1)"
-          dnd-callback="container.items.length">
-        <div class="container-element box box-blue">
-          <h3>Container (effects allowed: {{container.effectAllowed}})</h3>
-          <ul dnd-list="container.items"
-              dnd-allowed-types="['item']"
-              dnd-horizontal-list="true"
-              dnd-external-sources="true"
-              dnd-effect-allowed="{{container.effectAllowed}}"
-              dnd-dragover="dragoverCallback(index, external, type)"
-              dnd-drop="dropCallback(index, item, external, type)"
-              dnd-inserted="logListEvent('inserted at', index, external, type)"
-              class="itemlist">
-            <li ng-repeat="item in container.items"
-                dnd-draggable="item"
-                dnd-type="'item'"
-                dnd-effect-allowed="{{item.effectAllowed}}"
-                dnd-dragstart="logEvent('Started to drag an item')"
-                dnd-moved="container.items.splice($index, 1)"
-                dnd-dragend="logEvent('Drag operation ended. Drop effect: ' + dropEffect)">
-              {{item.label}}
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-      </li>
-    </ul>
+  <!-- Font style zone -->
+  <div class="col-md-4">
+    <h4>Title Field</h4>
+    <div class="container-element">
+      <div class="form-group">
+        <label for="font">Font</label>
+        <select
+          ng-model="selectedFont"
+          ng-options="font for font in fonts"
+          ng-change="selectFont()"
+          class="form-control"
+          id="font">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="size">Size</label>
+        <select
+          ng-model="selectedSize"
+          ng-options="size for size in sizes"
+          ng-change="selectSize()"
+          class="form-control"
+          id="size">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="color">Color: {{ selectedColor }}</label>
+        <input
+          minicolors
+          id="color"
+          class="form-control"
+          type="text"
+          ng-model="selectedColor">
+      </div>
+    </div>
   </div>
 </div>
