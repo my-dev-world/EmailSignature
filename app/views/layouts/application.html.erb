@@ -6,7 +6,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous">
+    </script>
     <%= javascript_include_tag 'application' %>
   </head>
 
@@ -19,7 +21,7 @@
       </div>
 
       <ui-view></ui-view>
-      
+
       <footer>
         <div class="text-right">
           <a ui-sref="dashboard" ui-sref-active="active">Skip This Step</a>
