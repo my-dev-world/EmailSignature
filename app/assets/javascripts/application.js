@@ -10,13 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular
-//= require angular-ui-router
-//= require angular-animate
-//= require angular-touch
+//= require angular/angular.min
+//= require angular-ui-router/release/angular-ui-router.min
+//= require angular-animate/angular-animate.min
+//= require angular-touch/angular-touch.min
 //= require angular-rails-templates
-//= require angular-bootstrap/ui-bootstrap-tpls
-//= require angular-drag-and-drop-lists
-//= require jquery-minicolors/jquery.minicolors
+//= require angular-bootstrap/ui-bootstrap-tpls.min
+//= require angular-drag-and-drop-lists/angular-drag-and-drop-lists
+//= require jquery-minicolors/jquery.minicolors.min
 //= require angular-minicolors
 //= require_tree .
