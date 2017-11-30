@@ -8,8 +8,8 @@
            uib-tooltip="Click on the component to change its formatting"
         ></i>
       </h4>
-      <div class="container-element box box-blue">
-        <ul dnd-list="modelClone"
+      <div class="container-element">
+        <!-- <ul dnd-list="modelClone"
             dnd-horizontal-list="true"
             class="itemlist">
           <li ng-repeat="item in modelClone"
@@ -20,6 +20,14 @@
               ng-class="{'selected': selected === item}">
             {{item.label}}
           </li>
+        </ul> -->
+        <ul ng-repeat="container in modelList" class="itemlist">
+          <li
+            ng-repeat="item in container"
+            ng-class="{'selected': selected===item}"
+            ng-click="selectCallback(item)">
+            {{ item.label }}
+          </li>
         </ul>
       </div>
     </div>
@@ -28,7 +36,7 @@
   <!-- Font style zone -->
   <div class="col-md-4" ng-if="selected.value">
     <h4>Title Field</h4>
-    <div class="container-element">
+    <div class="style-field">
       <div class="form-group">
         <label for="font">Font</label>
         <select
@@ -90,8 +98,8 @@
 <div class="row">
   <div class="col-md-6">
     <h4>Preview</h4>
-    <div class="container-element">
-      <div class="preview-section" ng-bind-html="html"></div>
+    <div class="preview-section">
+      <div ng-bind-html="html"></div>
     </div>
   </div>
 </div>

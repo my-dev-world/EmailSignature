@@ -16,7 +16,7 @@
 //= require angular-touch/angular-touch.min
 //= require angular-rails-templates
 //= require angular-bootstrap/ui-bootstrap-tpls.min
-//= require angular-drag-and-drop-lists/angular-drag-and-drop-lists
+// require angular-drag-and-drop-lists/angular-drag-and-drop-lists
 //= require jquery-minicolors/jquery.minicolors.min
 //= require angular-minicolors
 //= require_tree .
