@@ -96,11 +96,12 @@ function SignatureCtrl($scope, $sce, signatureService) {
     initialize();
 
     function initialize() {
+        $scope.modelList = [];
         angular.forEach($scope.model, function(item, key) {
             if ($scope.modelList[item.container] === undefined || !angular.isArray($scope.modelList[item.container])) {
-                $scope.modelList[item.container] = [item];
+                $scope.modelList[item.container] = [angular.copy(item)];
             } else {
-                $scope.modelList[item.container].push(item);
+                $scope.modelList[item.container].push(angular.copy(item));
             }
         });
     }
@@ -119,14 +120,7 @@ function SignatureCtrl($scope, $sce, signatureService) {
     }
 
     $scope.cancelChanges = function() {
-        $scope.modelClone = angular.copy($scope.model);
-        angular.forEach($scope.modelClone, function(item) {
-            if (item.value === $scope.selected.value) {
-                $scope.selected = angular.copy(item);
-                return;
-            }
-        });
-        $scope.modelAsJson = angular.toJson($scope.modelClone, true);
+        initialize();
         $scope.changed = false;
         $scope.selected = {};
         $scope.$apply();
@@ -140,8 +134,6 @@ function SignatureCtrl($scope, $sce, signatureService) {
     }
 
     $scope.$watch('modelList', function(modelList) {
-        $scope.modelAsJson = angular.toJson(modelList, true);
-
         //Generate preview HTML
         $scope.html = '';
         angular.forEach(modelList, function(container) {
