@@ -127,7 +127,7 @@ function SignatureCtrl($scope, $sce, signatureService) {
     }
 
     $scope.saveSignature = function() {
-        signatureService.postSignature({data: JSON.stringify($scope.modelClone), template: $scope.html.toString()})
+        signatureService.postSignature({data: $scope.modelList, template: $scope.html.toString()})
             .then(function(response) {
                 $scope.changed = false;
             });
